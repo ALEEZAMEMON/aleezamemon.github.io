@@ -1,0 +1,100 @@
+---
+const jobs = [
+  {
+    title: 'Java Spring Boot Backend Developer',
+    company: 'Self-Employed · Java · Spring Boot',
+    date: 'Aug 2024 — Present',
+    location: 'Sindh, Pakistan',
+    points: [
+      'Develop and maintain scalable backend applications using Java and Spring Boot for enterprise-level systems.',
+      'Design and build secure REST APIs with authentication and authorization using JWT, Auth0, and Spring Security.',
+      'Work with relational databases such as MySQL and Oracle for data storage, optimization, and query management.',
+      'Use GitHub for version control, collaboration, code reviews, and CI/CD workflow integration.',
+      'Implement backend features including API integration, database connectivity, exception handling, logging, and performance optimization.',
+    ],
+    tags: ['Java','JWT','Spring Security','Auth0','REST APIs','MySQL','Oracle','Git','GitHub'],
+  },
+  {
+    title: 'Hackathon Participant',
+    company: 'CCTRS — Carbon Contribution Tracking & Reward System',
+    date: '2024',
+    location: 'Sindh, Pakistan',
+    points: [
+      'Participated in a hackathon presenting CCTRS, focused on promoting environmentally responsible activities through digital tracking and rewards.',
+      'Designed backend modules for user activity tracking, reward point management, and carbon contribution calculations using Spring Boot and Java.',
+      'Developed secure REST APIs for user authentication, activity submission, and reward distribution with MySQL integration.',
+      'Collaborated with team members using GitHub for version control, feature management, and project coordination.',
+      'Contributed to system planning, backend architecture, and problem-solving to build a scalable sustainability platform.',
+    ],
+    tags: ['CCTRS','Spring Boot','React','Vercel','MySQL','GitHub'],
+  },
+  {
+    title: 'Software Engineering Student',
+    company: 'Mehran University of Engineering & Technology',
+    date: '2024 — Present',
+    location: 'Sindh, Pakistan',
+    points: [
+      'Pursuing a degree in Software Engineering with a focus on software development, problem solving, and modern computing technologies.',
+      'Object-Oriented Programming (OOP) — inheritance, polymorphism, abstraction, and encapsulation.',
+      'Data Structures and Algorithms (DSA) — efficient problem solving, optimization, and logical thinking.',
+      'Computer Networking — network architecture, protocols, cloud computing basics, and communication systems.',
+      'Worked on software engineering practicals — system design, database management, teamwork, documentation, and application development.',
+    ],
+    tags: ['Java','OOP','DSA','SQL','Git','SE','SRE'],
+  },
+];
+---
+
+<div id="experience" class="bg-secondary border-t border-b border-border">
+  <section class="max-w-[1200px] mx-auto px-12 py-20">
+
+    <div class="text-xs font-bold tracking-[2px] text-purple uppercase mb-4">EXPERIENCE</div>
+    <h2 class="text-[clamp(36px,4vw,52px)] font-black tracking-[-1.5px] leading-[1.1] mb-3">What I've Done</h2>
+    <p class="text-[#8b90a7] text-[15px] mb-12">My journey through work, hackathons, and academics.</p>
+
+    <div class="relative flex flex-col gap-8 pl-7">
+      <div class="absolute left-[10px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple to-[rgba(124,108,240,0.1)] rounded-full"></div>
+
+      {jobs.map(job => (
+        <div class="relative flex gap-7 items-start">
+          <div
+            class="absolute -left-[34px] top-6 w-3.5 h-3.5 rounded-full bg-purple border-[3px] border-secondary z-10"
+            style="box-shadow: 0 0 0 3px rgba(124,108,240,0.3)"
+          ></div>
+
+          <div class="flex-1 bg-card2 border border-border rounded-2xl p-8 hover:border-[rgba(124,108,240,0.45)] hover:shadow-[0_4px_32px_rgba(124,108,240,0.1)] transition-all duration-300">
+            <div class="flex justify-between items-start gap-4 flex-wrap mb-5">
+              <div>
+                <div class="text-[18px] font-extrabold text-white tracking-[-0.3px] mb-1">{job.title}</div>
+                <div class="text-[14px] font-semibold text-purple-light">{job.company}</div>
+              </div>
+              <div class="text-right">
+                <div class="inline-block bg-[rgba(124,108,240,0.15)] border border-[rgba(124,108,240,0.35)] text-purple-light text-xs font-semibold px-3 py-1 rounded-full mb-1">
+                  {job.date}
+                </div>
+                <div class="text-xs text-[#5a5f7a] text-right">{job.location}</div>
+              </div>
+            </div>
+
+            <ul class="flex flex-col gap-2.5 mb-5">
+              {job.points.map(pt => (
+                <li class="relative pl-5 text-[14px] text-[#8b90a7] leading-[1.65]">
+                  <span class="absolute left-0 top-0 text-purple font-bold text-[13px]">✓</span>
+                  {pt}
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex flex-wrap gap-2">
+              {job.tags.map(tag => (
+                <span class="text-xs font-semibold px-3 py-1 rounded-full border border-[rgba(124,108,240,0.4)] text-purple-light hover:bg-[rgba(124,108,240,0.12)] hover:border-purple transition-colors cursor-default">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</div>

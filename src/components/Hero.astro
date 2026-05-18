@@ -1,0 +1,60 @@
+---
+import CodeBlock from './CodeBlock.astro';
+---
+<section class="pt-[120px] pb-20 max-w-[1200px] mx-auto px-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-center min-h-screen">
+
+  <div>
+    <div class="inline-flex items-center gap-2 bg-[#141f14] border border-[#2a4a2a] text-green text-[13px] font-medium px-4 py-1.5 rounded-full mb-7">
+      <span class="w-1.5 h-1.5 rounded-full bg-green"></span>
+      Open to work — Backend Developer
+    </div>
+
+    <h1 class="text-[clamp(48px,6vw,72px)] font-black leading-[1.05] tracking-[-2px] mb-5">
+      Hi, I'm<br/>
+      <span class="bg-gradient-to-br from-purple via-purple-light to-[#e0d7ff] bg-clip-text text-transparent">
+        Aleeza<br/>Memon.
+      </span>
+    </h1>
+
+    <div class="flex items-center gap-2 text-purple-light text-base font-medium mb-5">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+      </svg>
+      Java · Spring Boot · Backend Developer
+    </div>
+
+    <p class="text-[#8b90a7] text-[15px] leading-[1.7] mb-9 max-w-[500px]">
+      I build production-ready backend systems — REST APIs, JWT authentication,
+      role-based access control, and database-driven services. Currently pursuing
+      BE Software Engineering at Mehran UET.
+    </p>
+
+    <div class="flex gap-3 flex-wrap mb-10">
+      <a href="#projects" class="inline-flex items-center gap-2 bg-purple text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-[#6a5cd8] transition-all hover:-translate-y-0.5">
+        View Projects
+      </a>
+      <a href="#contact" class="inline-flex items-center gap-2 text-[#8b90a7] text-sm font-medium px-6 py-3 rounded-lg border border-border hover:text-white hover:border-[#3a3f5a] transition-all">
+        Get In Touch
+      </a>
+      <a href="https://github.com/aleezamemon" target="_blank" class="inline-flex items-center gap-2 text-[#8b90a7] text-sm font-medium px-6 py-3 rounded-lg border border-border hover:text-white hover:border-[#3a3f5a] transition-all">
+        GitHub
+      </a>
+    </div>
+
+    <div class="grid grid-cols-4 bg-card border border-border rounded-xl overflow-hidden">
+      {[
+        { value: '1+',  label: 'Yr Experience' },
+        { value: '5+',  label: 'Projects'      },
+        { value: '10+', label: 'APIs Built'    },
+        { value: 'BSE', label: 'Mehran UET'    },
+      ].map((s, i, arr) => (
+        <div class={`py-5 text-center ${i < arr.length - 1 ? 'border-r border-border' : ''}`}>
+          <div class="text-2xl font-extrabold text-purple-light">{s.value}</div>
+          <div class="text-xs text-[#5a5f7a] mt-1">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <CodeBlock />
+</section>

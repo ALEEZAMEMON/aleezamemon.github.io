@@ -1,0 +1,98 @@
+---
+const projects = [
+  {
+    tag: 'Backend · Full Stack',
+    status: 'Hackathon Project',
+    statusColor: 'green',
+    title: 'CCTRS',
+    subtitle: 'Carbon Contribution Tracking & Reward System',
+    desc: 'A full-stack sustainability platform built for a hackathon. Users log environmentally responsible activities, earn reward points, and track their carbon contribution — all backed by a secure Spring Boot REST API with JWT authentication and MySQL database integration.',
+    tags: ['Java','Spring Boot','Spring Security','JWT','MySQL','REST APIs','React','Vercel','GitHub'],
+    github: 'https://github.com/ALEEZAMEMON',
+    live: '',
+  },
+  {
+    tag: 'Frontend · Design',
+    status: 'Live',
+    statusColor: 'live',
+    title: 'Portfolio Website',
+    subtitle: 'Personal Developer Portfolio — Aleeza Memon',
+    desc: 'A fully custom-designed developer portfolio built with Astro, React, and Tailwind CSS. Features a dark theme, animated Java code block, multi-page routing, and is deployed on GitHub Pages with automatic CI/CD via GitHub Actions.',
+    tags: ['Astro','React','Tailwind CSS','GitHub Pages','GitHub Actions'],
+    github: 'https://github.com/ALEEZAMEMON/aleeza-memon.github.io',
+    live: 'https://aleezamemon.github.io',
+  },
+];
+---
+
+<div class="border-t border-[#1f2340]">
+  <section class="max-w-[1200px] mx-auto px-12 py-20">
+
+    <div class="text-xs font-bold tracking-[2px] text-[#7c6cf0] uppercase mb-4">PROJECTS</div>
+    <h2 class="text-[clamp(36px,4vw,52px)] font-black tracking-[-1.5px] leading-[1.1] mb-3 text-white">Things I've Built</h2>
+    <p class="text-[#8b90a7] text-[15px] mb-14">Real projects — from hackathons to personal builds.</p>
+
+    <div class="flex flex-col gap-8">
+      {projects.map(p => (
+        <div class="bg-card2 border border-[#1f2340] rounded-2xl overflow-hidden hover:border-[rgba(124,108,240,0.45)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)] transition-all duration-300">
+
+          <div class="h-1 w-full bg-gradient-to-r from-[#7c6cf0]/40 to-[#a78bfa]/5"></div>
+
+          <div class="p-8 md:p-10">
+            <div class="flex items-start justify-between flex-wrap gap-4 mb-6">
+              <div class="flex items-center gap-3 flex-wrap">
+                <span class="text-xs font-semibold px-3 py-1 rounded-full border border-[rgba(124,108,240,0.35)] text-[#a78bfa] bg-[rgba(124,108,240,0.1)]">
+                  {p.tag}
+                </span>
+                <span class="flex items-center gap-1.5 text-xs font-medium text-[#8b90a7]">
+                  <span class={`w-1.5 h-1.5 rounded-full bg-green ${p.statusColor === 'green' ? 'animate-pulse_green' : 'bg-[#7c6cf0]'}`}></span>
+                  {p.status}
+                </span>
+              </div>
+              <div class="flex items-center gap-3">
+                <a href={p.github} target="_blank"
+                   class="inline-flex items-center gap-2 text-[#8b90a7] hover:text-white text-sm font-medium border border-[#1f2340] hover:border-[#3a3f5a] px-4 py-2 rounded-lg transition-all no-underline">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  View on GitHub
+                </a>
+                {p.live && (
+                  <a href={p.live} target="_blank"
+                     class="inline-flex items-center gap-2 bg-[#7c6cf0] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#6a5cd8] transition-all no-underline">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                      <polyline points="15 3 21 3 21 9"/>
+                      <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                    Live Site
+                  </a>
+                )}
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-black text-white tracking-[-0.5px] mb-1">{p.title}</h3>
+            <div class="text-sm font-semibold text-[#a78bfa] mb-5">{p.subtitle}</div>
+            <p class="text-[#8b90a7] text-[15px] leading-[1.8] mb-7">{p.desc}</p>
+
+            <div class="flex flex-wrap gap-2">
+              {p.tags.map(tag => (
+                <span class="text-xs font-semibold px-3 py-1 rounded-full border border-[rgba(124,108,240,0.35)] text-[#a78bfa] hover:bg-[rgba(124,108,240,0.12)] transition-colors cursor-default">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="https://github.com/ALEEZAMEMON" target="_blank"
+         class="inline-flex items-center gap-2 text-[#8b90a7] hover:text-white text-sm font-medium border border-[#1f2340] hover:border-[#3a3f5a] px-6 py-3 rounded-lg transition-all no-underline">
+        View All Projects on GitHub →
+      </a>
+    </div>
+
+  </section>
+</div>
