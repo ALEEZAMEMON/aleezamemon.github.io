@@ -1,68 +1,93 @@
 ---
 ---
+
 <div class="shutter-wrapper" id="shutterWrapper">
 
-  <!-- Left shutter panel -->
-  <div class="shutter-panel shutter-left" id="shutterLeft">
+  <!-- Shutter panel (slides up to reveal code) -->
+  <div class="shutter-panel" id="shutterPanel">
     <div class="shutter-lines">
-      {Array.from({length: 8}).map(() => (
+      {Array.from({length: 10}).map(() => (
         <div class="shutter-line"></div>
       ))}
     </div>
-  </div>
-
-  <!-- Right shutter panel -->
-  <div class="shutter-panel shutter-right" id="shutterRight">
-    <div class="shutter-lines">
-      {Array.from({length: 8}).map(() => (
-        <div class="shutter-line"></div>
-      ))}
+    <div class="shutter-text">
+      <span class="text-[#10b981] font-mono text-sm tracking-widest opacity-60">initializing...</span>
     </div>
   </div>
 
-  <!-- Content revealed behind shutter -->
-  <div class="shutter-content" id="shutterContent">
-    <div class="code-reveal">
-
-      <div class="flex items-center gap-2 px-4 py-3 border-b border-[#1a3a2a] bg-[#080c18]">
-        <span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span>
-        <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
-        <span class="w-3 h-3 rounded-full bg-[#28ca41]"></span>
-        <span class="ml-2 text-[#4a6070] text-xs font-mono">Developer.java</span>
-      </div>
-
-      <div class="px-6 py-5 leading-[1.8] font-mono text-[13.5px]">
-        <div class="text-[#3a5060]">// — Backend Developer Profile</div>
-        <div>&nbsp;</div>
-        <div><span class="text-[#10b981]">public class</span><span class="text-white font-semibold"> Developer </span><span class="text-[#8b8fa8]">{"{"}</span></div>
-        <div>&nbsp;</div>
-        <div class="pl-6"><span class="text-[#3b82f6]">String</span>&nbsp;&nbsp; <span class="text-[#34d399]">name</span>   = <span class="text-amber-400">"Aleeza Memon"</span> ;</div>
-        <div class="pl-6"><span class="text-[#3b82f6]">String</span>&nbsp;&nbsp; <span class="text-[#34d399]">role</span>   = <span class="text-amber-400">"Backend Developer"</span> ;</div>
-        <div class="pl-6"><span class="text-[#3b82f6]">String</span>&nbsp;&nbsp; <span class="text-[#34d399]">status</span> = <span class="text-amber-400">"Available"</span> ;</div>
-        <div class="pl-6"><span class="text-[#3b82f6]">String</span>&nbsp;&nbsp; <span class="text-[#34d399]">uni</span>    = <span class="text-amber-400">"Mehran UET"</span> ;</div>
-        <div>&nbsp;</div>
-        <div class="pl-6"><span class="text-[#3b82f6]">String[]</span> <span class="text-[#34d399]">stack</span> = <span class="text-[#8b8fa8]">{"{"}</span></div>
-        <div class="pl-11"><span class="text-amber-400">"Spring Boot"</span> , <span class="text-amber-400">"JWT Auth"</span> ,</div>
-        <div class="pl-11"><span class="text-amber-400">"REST APIs"</span> ,&nbsp; <span class="text-amber-400">"MySQL"</span> ,</div>
-        <div class="pl-11"><span class="text-amber-400">"Spring Security"</span></div>
-        <div class="pl-6"><span class="text-[#8b8fa8]">{"} ;"}</span></div>
-        <div>&nbsp;</div>
-        <div><span class="text-[#8b8fa8]">{"}"}</span></div>
-      </div>
-
-      <div class="flex items-center gap-2 px-6 py-3 border-t border-[#1a3a2a] bg-[#060a14]">
-        <span class="text-[#3a5060]">$</span>
-        <span class="text-[#10b981]">./run-api</span>
-        <span class="text-[#34d399]">&nbsp;--port</span>
-        <span class="text-white"> = 8080</span>
-        <span class="inline-block w-0.5 h-3.5 bg-[#10b981] animate-blink align-middle ml-1"></span>
-      </div>
-
+  <!-- Code content behind shutter -->
+  <div class="shutter-content">
+    <div class="flex items-center gap-2 px-4 py-3 border-b border-[#1a3a2a] bg-[#080c18]">
+      <span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span>
+      <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+      <span class="w-3 h-3 rounded-full bg-[#28ca41]"></span>
+      <span class="ml-2 text-[#4a6070] text-xs font-mono">Developer.java</span>
+    </div>
+    <div class="px-6 py-5 leading-[1.8] font-mono text-[13.5px]">
+      <div class="text-[#3a5060]">// — Backend Developer Profile</div>
+      <div>&nbsp;</div>
+      <div><span class="text-[#10b981]">public class</span><span class="text-white font-semibold"> Developer </span><span class="text-[#8b8fa8]">{"{"}</span></div>
+      <div>&nbsp;</div>
+      <div class="pl-6"><span class="text-[#3b82f6]">String</span>&nbsp;&nbsp; <span class="text-[#34d399]">name</span>   = <span class="text-amber-400">"Aleeza Memon"</span> ;</div>
+      <div class="pl-6"><span class="text-[#3b82f6]">String</span>&nbsp;&nbsp; <span class="text-[#34d399]">role</span>   = <span class="text-amber-400">"Backend Developer"</span> ;</div>
+      <div class="pl-6"><span class="text-[#3b82f6]">String</span>&nbsp;&nbsp; <span class="text-[#34d399]">status</span> = <span class="text-amber-400">"Available"</span> ;</div>
+      <div class="pl-6"><span class="text-[#3b82f6]">String</span>&nbsp;&nbsp; <span class="text-[#34d399]">uni</span>    = <span class="text-amber-400">"Mehran UET"</span> ;</div>
+      <div>&nbsp;</div>
+      <div class="pl-6"><span class="text-[#3b82f6]">String[]</span> <span class="text-[#34d399]">stack</span> = <span class="text-[#8b8fa8]">{"{"}</span></div>
+      <div class="pl-11"><span class="text-amber-400">"Spring Boot"</span> , <span class="text-amber-400">"JWT Auth"</span> ,</div>
+      <div class="pl-11"><span class="text-amber-400">"REST APIs"</span> ,&nbsp; <span class="text-amber-400">"MySQL"</span> ,</div>
+      <div class="pl-11"><span class="text-amber-400">"Spring Security"</span></div>
+      <div class="pl-6"><span class="text-[#8b8fa8]">{"} ;"}</span></div>
+      <div>&nbsp;</div>
+      <div><span class="text-[#8b8fa8]">{"}"}</span></div>
+    </div>
+    <div class="flex items-center gap-2 px-6 py-3 border-t border-[#1a3a2a] bg-[#060a14]">
+      <span class="text-[#3a5060]">$</span>
+      <span class="text-[#10b981]">./run-api</span>
+      <span class="text-[#34d399]">&nbsp;--port</span>
+      <span class="text-white"> = 8080</span>
+      <span class="inline-block w-0.5 h-3.5 bg-[#10b981] blink align-middle ml-1"></span>
     </div>
   </div>
+
+  <!-- Girl character — slides in from right, opens shutter, leans back -->
+  <div class="girl-wrapper" id="girlWrapper">
+    <div class="girl-figure" id="girlFigure">
+      <!-- Body -->
+      <div class="girl-body">
+        <!-- Head -->
+        <div class="girl-head">
+          <div class="girl-hair"></div>
+          <div class="girl-face">
+            <div class="girl-eye girl-eye-left"></div>
+            <div class="girl-eye girl-eye-right"></div>
+            <div class="girl-glasses"></div>
+            <div class="girl-smile"></div>
+          </div>
+        </div>
+        <!-- Torso -->
+        <div class="girl-torso">
+          <div class="girl-suit"></div>
+          <div class="girl-tie"></div>
+        </div>
+        <!-- Arms pushing up -->
+        <div class="girl-arm girl-arm-left" id="armLeft"></div>
+        <div class="girl-arm girl-arm-right" id="armRight"></div>
+        <!-- Legs -->
+        <div class="girl-legs">
+          <div class="girl-leg"></div>
+          <div class="girl-leg"></div>
+        </div>
+      </div>
+      <!-- Push label -->
+      <div class="push-label" id="pushLabel">pushing...</div>
+    </div>
+  </div>
+
 </div>
 
 <style>
+  /* ── WRAPPER ── */
   .shutter-wrapper {
     position: relative;
     border-radius: 12px;
@@ -71,79 +96,293 @@
     border: 1px solid #1a3a2a;
     box-shadow: 0 8px 32px rgba(16,185,129,0.15);
     animation: float 5s ease-in-out infinite;
+    animation-delay: 3.5s;
+    animation-play-state: paused;
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50%      { transform: translateY(-14px); }
+    0%,100% { transform: translateY(0px);   box-shadow: 0 8px 32px rgba(16,185,129,0.15); }
+    50%     { transform: translateY(-14px); box-shadow: 0 22px 48px rgba(16,185,129,0.25); }
   }
 
-  .shutter-content {
-    position: relative;
-    z-index: 1;
+  .blink {
+    animation: blink 1s infinite;
   }
+  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
 
-  .code-reveal {
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  /* Shutter panels sit on top */
+  /* ── SHUTTER ── */
   .shutter-panel {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 50%;
+    inset: 0;
     z-index: 10;
-    background: linear-gradient(135deg, #0b1220, #0d1f35);
-    border: 1px solid #1a3a2a;
+    background: linear-gradient(160deg, #0b1a2e 0%, #071428 50%, #0b1f1a 100%);
+    border-radius: 12px;
     display: flex;
-    align-items: stretch;
-    overflow: hidden;
-    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(0%);
+    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .shutter-left  { left: 0;   transform: translateX(0); }
-  .shutter-right { right: 0;  transform: translateX(0); }
+  .shutter-panel.open {
+    transform: translateY(-100%);
+  }
 
-  /* Decorative lines on shutter */
   .shutter-lines {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 100%;
-    padding: 16px;
+    padding: 12px 20px;
   }
 
   .shutter-line {
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #10b981, transparent);
-    opacity: 0.3;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(16,185,129,0.25), transparent);
     border-radius: 2px;
   }
 
-  /* When open class added */
-  .shutter-panel.open-left  { transform: translateX(-100%); }
-  .shutter-panel.open-right { transform: translateX(100%);  }
+  .shutter-text {
+    position: relative;
+    z-index: 2;
+  }
 
-  /* Green glow border animation when opening */
-  .shutter-wrapper.opening {
-    box-shadow: 0 0 40px rgba(16,185,129,0.4);
+  /* ── GIRL WRAPPER ── */
+  .girl-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: -120px;
+    width: 110px;
+    height: 220px;
+    z-index: 20;
+    transition: right 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .girl-wrapper.slide-in {
+    right: -10px;
+  }
+
+  .girl-wrapper.lean-back {
+    right: -70px;
+    transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ── GIRL FIGURE ── */
+  .girl-figure {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .push-label {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: #10b981;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+
+  .push-label.visible { opacity: 1; }
+
+  /* ── GIRL BODY PARTS ── */
+  .girl-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* HEAD */
+  .girl-head {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 2px;
+  }
+
+  .girl-hair {
+    position: absolute;
+    top: -6px; left: -4px;
+    width: 52px; height: 30px;
+    background: #2d1a0e;
+    border-radius: 50% 50% 20% 20%;
+    z-index: 1;
+  }
+
+  .girl-face {
+    position: absolute;
+    top: 4px; left: 4px;
+    width: 36px; height: 36px;
+    background: #f5c5a3;
+    border-radius: 50%;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  .girl-eye {
+    position: absolute;
+    top: 12px;
+    width: 6px; height: 6px;
+    background: #2d1a0e;
+    border-radius: 50%;
+  }
+  .girl-eye-left  { left: 7px; }
+  .girl-eye-right { right: 7px; }
+
+  .girl-glasses {
+    position: absolute;
+    top: 10px; left: 4px;
+    width: 28px; height: 10px;
+    border: 1.5px solid #444;
+    border-radius: 4px;
+    background: transparent;
+  }
+
+  .girl-smile {
+    position: absolute;
+    bottom: 7px; left: 50%;
+    transform: translateX(-50%);
+    width: 14px; height: 6px;
+    border-bottom: 2px solid #c0624a;
+    border-radius: 0 0 8px 8px;
+  }
+
+  /* TORSO */
+  .girl-torso {
+    position: relative;
+    width: 40px; height: 50px;
+    background: #2d2d3a;
+    border-radius: 6px 6px 4px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .girl-suit {
+    position: absolute;
+    inset: 0;
+    background: #1e1e2a;
+    border-radius: 6px 6px 4px 4px;
+    border: 1px solid #3a3a4a;
+  }
+
+  .girl-tie {
+    position: absolute;
+    top: 6px; left: 50%;
+    transform: translateX(-50%);
+    width: 8px; height: 20px;
+    background: #10b981;
+    clip-path: polygon(30% 0%, 70% 0%, 100% 70%, 50% 100%, 0% 70%);
+    z-index: 2;
+  }
+
+  /* ARMS */
+  .girl-arm {
+    position: absolute;
+    top: 52px;
+    width: 10px; height: 44px;
+    background: #2d2d3a;
+    border-radius: 5px;
+    transform-origin: top center;
+    transition: transform 0.5s ease;
+  }
+
+  .girl-arm-left  {
+    left: -10px;
+    transform: rotate(30deg);
+  }
+  .girl-arm-right {
+    right: -10px;
+    transform: rotate(-30deg);
+  }
+
+  /* Arms raised — pushing up */
+  .girl-arm-left.pushing  { transform: rotate(-60deg) translateY(-10px); }
+  .girl-arm-right.pushing { transform: rotate(60deg) translateY(-10px); }
+
+  /* Arms back to side after lean */
+  .girl-arm-left.relaxed  { transform: rotate(20deg); }
+  .girl-arm-right.relaxed { transform: rotate(-20deg); }
+
+  /* LEGS */
+  .girl-legs {
+    display: flex;
+    gap: 6px;
+    margin-top: 2px;
+  }
+
+  .girl-leg {
+    width: 14px; height: 50px;
+    background: #1e1e2a;
+    border-radius: 4px 4px 6px 6px;
+    border: 1px solid #3a3a4a;
+  }
+
+  /* ── GLOW EFFECT on wrapper when open ── */
+  .shutter-wrapper.glowing {
+    box-shadow: 0 0 50px rgba(16,185,129,0.35), 0 8px 32px rgba(16,185,129,0.15);
+    animation-play-state: running;
   }
 </style>
 
 <script>
-  // Start animation after 800ms page load
-  setTimeout(() => {
-    const wrapper = document.getElementById('shutterWrapper');
-    const left    = document.getElementById('shutterLeft');
-    const right   = document.getElementById('shutterRight');
+  function runAnimation() {
+    const wrapper     = document.getElementById('shutterWrapper');
+    const shutter     = document.querySelector('.shutter-panel');
+    const girlWrapper = document.getElementById('girlWrapper');
+    const armLeft     = document.getElementById('armLeft');
+    const armRight    = document.getElementById('armRight');
+    const pushLabel   = document.getElementById('pushLabel');
 
-    if (wrapper) wrapper.classList.add('opening');
+    if (!wrapper || !shutter || !girlWrapper) return;
 
+    // Step 1 — girl slides in from right (0.8s)
     setTimeout(() => {
-      if (left)  left.classList.add('open-left');
-      if (right) right.classList.add('open-right');
-    }, 200);
+      girlWrapper.classList.add('slide-in');
+      if (pushLabel) pushLabel.classList.add('visible');
+    }, 600);
 
-  }, 800);
+    // Step 2 — arms go up, shutter starts opening (1.6s)
+    setTimeout(() => {
+      if (armLeft)  armLeft.classList.add('pushing');
+      if (armRight) armRight.classList.add('pushing');
+    }, 1400);
+
+    // Step 3 — shutter slides up (1.8s)
+    setTimeout(() => {
+      shutter.classList.add('open');
+    }, 1700);
+
+    // Step 4 — glow appears (2.5s)
+    setTimeout(() => {
+      wrapper.classList.add('glowing');
+      if (pushLabel) pushLabel.classList.remove('visible');
+    }, 2500);
+
+    // Step 5 — girl leans back to the side (2.8s)
+    setTimeout(() => {
+      girlWrapper.classList.add('lean-back');
+      if (armLeft)  { armLeft.classList.remove('pushing');  armLeft.classList.add('relaxed');  }
+      if (armRight) { armRight.classList.remove('pushing'); armRight.classList.add('relaxed'); }
+    }, 2800);
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runAnimation);
+  } else {
+    runAnimation();
+  }
 </script>
