@@ -4,22 +4,23 @@
   --font-family-sans: 'Inter', sans-serif;
   --font-family-mono: 'JetBrains Mono', monospace;
 
-  --color-primary:       #0d0f1a;
-  --color-secondary:     #12152b;
-  --color-card:          #161929;
-  --color-card2:         #1a1e30;
-  --color-purple:        #7c6cf0;
-  --color-purple-light:  #a78bfa;
-  --color-green:         #22c55e;
-  --color-border:        #1f2340;
+  --color-primary:       #0b1220;
+  --color-secondary:     #0d1526;
+  --color-card:          #0f1a2e;
+  --color-card2:         #111f35;
+  --color-purple:        #10b981;
+  --color-purple-light:  #34d399;
+  --color-green:         #10b981;
+  --color-border:        #1a3a2a;
 
   --animate-float:       float 5s ease-in-out infinite;
   --animate-blink:       blink 1s infinite;
   --animate-pulse_green: pulse_green 2s infinite;
+  --animate-shutter:     shutter 1.5s ease-in-out forwards;
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px);   box-shadow: 0 8px 32px rgba(124,108,240,0.15); }
-    50%      { transform: translateY(-14px); box-shadow: 0 22px 48px rgba(124,108,240,0.25); }
+    0%, 100% { transform: translateY(0px);   box-shadow: 0 8px 32px rgba(16,185,129,0.15); }
+    50%      { transform: translateY(-14px); box-shadow: 0 22px 48px rgba(16,185,129,0.25); }
   }
   @keyframes blink {
     0%, 100% { opacity: 1; }
