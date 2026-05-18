@@ -3,18 +3,6 @@
 
 <div class="shutter-wrapper" id="shutterWrapper">
 
-  <!-- Shutter panel (slides up to reveal code) -->
-  <div class="shutter-panel" id="shutterPanel">
-    <div class="shutter-lines">
-      {Array.from({length: 10}).map(() => (
-        <div class="shutter-line"></div>
-      ))}
-    </div>
-    <div class="shutter-text">
-      <span class="text-[#10b981] font-mono text-sm tracking-widest opacity-60">initializing...</span>
-    </div>
-  </div>
-
   <!-- Code content behind shutter -->
   <div class="shutter-content">
     <div class="flex items-center gap-2 px-4 py-3 border-b border-[#1a3a2a] bg-[#080c18]">
@@ -46,343 +34,492 @@
       <span class="text-[#10b981]">./run-api</span>
       <span class="text-[#34d399]">&nbsp;--port</span>
       <span class="text-white"> = 8080</span>
-      <span class="inline-block w-0.5 h-3.5 bg-[#10b981] blink align-middle ml-1"></span>
+      <span class="cursor-blink align-middle ml-1"></span>
     </div>
   </div>
 
-  <!-- Girl character — slides in from right, opens shutter, leans back -->
-  <div class="girl-wrapper" id="girlWrapper">
-    <div class="girl-figure" id="girlFigure">
-      <!-- Body -->
-      <div class="girl-body">
-        <!-- Head -->
-        <div class="girl-head">
-          <div class="girl-hair"></div>
-          <div class="girl-face">
-            <div class="girl-eye girl-eye-left"></div>
-            <div class="girl-eye girl-eye-right"></div>
-            <div class="girl-glasses"></div>
-            <div class="girl-smile"></div>
-          </div>
+  <!-- Shutter panel on top -->
+  <div class="shutter-panel" id="shutterPanel">
+    <div class="shutter-lines">
+      {Array.from({length: 12}).map(() => (
+        <div class="shutter-line"></div>
+      ))}
+    </div>
+    <div class="shutter-center-content">
+      <div class="shutter-lock" id="shutterLock">
+        <div class="lock-body"></div>
+        <div class="lock-shackle"></div>
+      </div>
+      <p class="shutter-label" id="shutterLabel">loading profile...</p>
+    </div>
+  </div>
+
+  <!-- Bunny sits at bottom, pushes shutter up -->
+  <div class="bunny-wrapper" id="bunnyWrapper">
+    <div class="bunny" id="bunny">
+
+      <!-- Ears -->
+      <div class="bunny-ears">
+        <div class="ear ear-left">
+          <div class="ear-inner"></div>
         </div>
-        <!-- Torso -->
-        <div class="girl-torso">
-          <div class="girl-suit"></div>
-          <div class="girl-tie"></div>
-        </div>
-        <!-- Arms pushing up -->
-        <div class="girl-arm girl-arm-left" id="armLeft"></div>
-        <div class="girl-arm girl-arm-right" id="armRight"></div>
-        <!-- Legs -->
-        <div class="girl-legs">
-          <div class="girl-leg"></div>
-          <div class="girl-leg"></div>
+        <div class="ear ear-right">
+          <div class="ear-inner"></div>
         </div>
       </div>
-      <!-- Push label -->
-      <div class="push-label" id="pushLabel">pushing...</div>
+
+      <!-- Head -->
+      <div class="bunny-head">
+        <div class="eye eye-left" id="eyeLeft"></div>
+        <div class="eye eye-right" id="eyeRight"></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+        <!-- Blush -->
+        <div class="blush blush-left"></div>
+        <div class="blush blush-right"></div>
+      </div>
+
+      <!-- Body -->
+      <div class="bunny-body">
+        <!-- Arms -->
+        <div class="arm arm-left" id="armLeft"></div>
+        <div class="arm arm-right" id="armRight"></div>
+        <!-- Belly -->
+        <div class="belly"></div>
+      </div>
+
+      <!-- Feet -->
+      <div class="bunny-feet">
+        <div class="foot foot-left"></div>
+        <div class="foot foot-right"></div>
+      </div>
+
+      <!-- Tail -->
+      <div class="tail"></div>
+
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="speech-bubble" id="speechBubble">
+      <span id="speechText">✨ ta-da!</span>
     </div>
   </div>
 
 </div>
 
 <style>
-  /* ── WRAPPER ── */
-  .shutter-wrapper {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #0a0f1e;
-    border: 1px solid #1a3a2a;
-    box-shadow: 0 8px 32px rgba(16,185,129,0.15);
-    animation: float 5s ease-in-out infinite;
-    animation-delay: 3.5s;
-    animation-play-state: paused;
-  }
+/* ── WRAPPER ── */
+.shutter-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0a0f1e;
+  border: 1px solid #1a3a2a;
+  box-shadow: 0 8px 32px rgba(16,185,129,0.15);
+}
 
-  @keyframes float {
-    0%,100% { transform: translateY(0px);   box-shadow: 0 8px 32px rgba(16,185,129,0.15); }
-    50%     { transform: translateY(-14px); box-shadow: 0 22px 48px rgba(16,185,129,0.25); }
-  }
+.shutter-wrapper.floating {
+  animation: float 5s ease-in-out infinite;
+}
 
-  .blink {
-    animation: blink 1s infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+@keyframes float {
+  0%,100% { transform: translateY(0px);   box-shadow: 0 8px 32px rgba(16,185,129,0.15); }
+  50%     { transform: translateY(-14px); box-shadow: 0 22px 48px rgba(16,185,129,0.28); }
+}
 
-  /* ── SHUTTER ── */
-  .shutter-panel {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    background: linear-gradient(160deg, #0b1a2e 0%, #071428 50%, #0b1f1a 100%);
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(0%);
-    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+/* ── CURSOR ── */
+.cursor-blink {
+  display: inline-block;
+  width: 2px; height: 14px;
+  background: #10b981;
+  vertical-align: middle;
+  animation: blink 1s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
 
-  .shutter-panel.open {
-    transform: translateY(-100%);
-  }
+/* ── SHUTTER ── */
+.shutter-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: linear-gradient(170deg, #0c1828 0%, #081420 50%, #0b1f1a 100%);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(0%);
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  .shutter-lines {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 12px 20px;
-  }
+.shutter-panel.open {
+  transform: translateY(-105%);
+}
 
-  .shutter-line {
-    height: 1.5px;
-    background: linear-gradient(90deg, transparent, rgba(16,185,129,0.25), transparent);
-    border-radius: 2px;
-  }
+.shutter-lines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px 20px;
+  pointer-events: none;
+}
 
-  .shutter-text {
-    position: relative;
-    z-index: 2;
-  }
+.shutter-line {
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(16,185,129,0.2), transparent);
+  border-radius: 2px;
+}
 
-  /* ── GIRL WRAPPER ── */
-  .girl-wrapper {
-    position: absolute;
-    bottom: 0;
-    right: -120px;
-    width: 110px;
-    height: 220px;
-    z-index: 20;
-    transition: right 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
+.shutter-center-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
 
-  .girl-wrapper.slide-in {
-    right: -10px;
-  }
+/* Lock icon */
+.shutter-lock {
+  position: relative;
+  width: 28px;
+  transition: transform 0.3s;
+}
+.lock-body {
+  width: 28px; height: 20px;
+  background: #1a3a2a;
+  border: 2px solid #10b981;
+  border-radius: 5px;
+}
+.lock-shackle {
+  position: absolute;
+  top: -10px; left: 50%;
+  transform: translateX(-50%);
+  width: 16px; height: 14px;
+  border: 2px solid #10b981;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  transition: transform 0.4s, opacity 0.4s;
+}
+.shutter-lock.unlocked .lock-shackle {
+  transform: translateX(-50%) translateY(-6px) rotate(20deg);
+  opacity: 0.3;
+}
 
-  .girl-wrapper.lean-back {
-    right: -70px;
-    transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+.shutter-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #10b981;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
 
-  /* ── GIRL FIGURE ── */
-  .girl-figure {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-  }
+/* ── BUNNY WRAPPER ── */
+.bunny-wrapper {
+  position: absolute;
+  bottom: -140px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: bottom 0.7s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
 
-  .push-label {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 10px;
-    color: #10b981;
-    font-family: 'JetBrains Mono', monospace;
-    opacity: 0;
-    transition: opacity 0.3s;
-    white-space: nowrap;
-  }
+.bunny-wrapper.rise {
+  bottom: -20px;
+}
 
-  .push-label.visible { opacity: 1; }
+.bunny-wrapper.lean-back {
+  bottom: -100px;
+  transition: bottom 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  /* ── GIRL BODY PARTS ── */
-  .girl-body {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
+/* ── SPEECH BUBBLE ── */
+.speech-bubble {
+  background: #0b1a2e;
+  border: 1px solid #10b981;
+  border-radius: 12px;
+  padding: 5px 12px;
+  font-size: 11px;
+  color: #34d399;
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+  margin-bottom: 6px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.4s, transform 0.4s;
+  position: relative;
+}
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -7px; left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #10b981;
+  border-bottom: none;
+}
+.speech-bubble.visible {
+  opacity: 1;
+  transform: scale(1);
+}
 
-  /* HEAD */
-  .girl-head {
-    position: relative;
-    width: 44px;
-    height: 44px;
-    margin-bottom: 2px;
-  }
+/* ── BUNNY ── */
+.bunny {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .girl-hair {
-    position: absolute;
-    top: -6px; left: -4px;
-    width: 52px; height: 30px;
-    background: #2d1a0e;
-    border-radius: 50% 50% 20% 20%;
-    z-index: 1;
-  }
+/* EARS */
+.bunny-ears {
+  display: flex;
+  gap: 14px;
+  margin-bottom: -4px;
+  position: relative;
+  z-index: 2;
+}
 
-  .girl-face {
-    position: absolute;
-    top: 4px; left: 4px;
-    width: 36px; height: 36px;
-    background: #f5c5a3;
-    border-radius: 50%;
-    z-index: 2;
-    overflow: hidden;
-  }
+.ear {
+  width: 16px; height: 40px;
+  background: #e8d5c4;
+  border-radius: 50% 50% 30% 30%;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
 
-  .girl-eye {
-    position: absolute;
-    top: 12px;
-    width: 6px; height: 6px;
-    background: #2d1a0e;
-    border-radius: 50%;
-  }
-  .girl-eye-left  { left: 7px; }
-  .girl-eye-right { right: 7px; }
+.ear-left  { transform: rotate(-8deg); }
+.ear-right { transform: rotate(8deg); }
 
-  .girl-glasses {
-    position: absolute;
-    top: 10px; left: 4px;
-    width: 28px; height: 10px;
-    border: 1.5px solid #444;
-    border-radius: 4px;
-    background: transparent;
-  }
+.ear-inner {
+  width: 7px; height: 26px;
+  background: #f0a0b0;
+  border-radius: 50%;
+}
 
-  .girl-smile {
-    position: absolute;
-    bottom: 7px; left: 50%;
-    transform: translateX(-50%);
-    width: 14px; height: 6px;
-    border-bottom: 2px solid #c0624a;
-    border-radius: 0 0 8px 8px;
-  }
+/* HEAD */
+.bunny-head {
+  width: 60px; height: 56px;
+  background: #e8d5c4;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
 
-  /* TORSO */
-  .girl-torso {
-    position: relative;
-    width: 40px; height: 50px;
-    background: #2d2d3a;
-    border-radius: 6px 6px 4px 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.eye {
+  position: absolute;
+  top: 20px;
+  width: 9px; height: 9px;
+  background: #2d1a2e;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+.eye-left  { left: 13px; }
+.eye-right { right: 13px; }
 
-  .girl-suit {
-    position: absolute;
-    inset: 0;
-    background: #1e1e2a;
-    border-radius: 6px 6px 4px 4px;
-    border: 1px solid #3a3a4a;
-  }
+/* Happy squint */
+.eye.happy {
+  height: 5px;
+  border-radius: 50% 50% 0 0;
+  top: 22px;
+}
 
-  .girl-tie {
-    position: absolute;
-    top: 6px; left: 50%;
-    transform: translateX(-50%);
-    width: 8px; height: 20px;
-    background: #10b981;
-    clip-path: polygon(30% 0%, 70% 0%, 100% 70%, 50% 100%, 0% 70%);
-    z-index: 2;
-  }
+.nose {
+  position: absolute;
+  top: 30px; left: 50%;
+  transform: translateX(-50%);
+  width: 8px; height: 6px;
+  background: #f0a0b0;
+  border-radius: 50%;
+}
 
-  /* ARMS */
-  .girl-arm {
-    position: absolute;
-    top: 52px;
-    width: 10px; height: 44px;
-    background: #2d2d3a;
-    border-radius: 5px;
-    transform-origin: top center;
-    transition: transform 0.5s ease;
-  }
+.mouth {
+  position: absolute;
+  bottom: 11px; left: 50%;
+  transform: translateX(-50%);
+  width: 16px; height: 7px;
+  border-bottom: 2px solid #c07080;
+  border-radius: 0 0 10px 10px;
+}
 
-  .girl-arm-left  {
-    left: -10px;
-    transform: rotate(30deg);
-  }
-  .girl-arm-right {
-    right: -10px;
-    transform: rotate(-30deg);
-  }
+.blush {
+  position: absolute;
+  top: 28px;
+  width: 12px; height: 7px;
+  background: #f0a0b0;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+.blush-left  { left: 6px; }
+.blush-right { right: 6px; }
 
-  /* Arms raised — pushing up */
-  .girl-arm-left.pushing  { transform: rotate(-60deg) translateY(-10px); }
-  .girl-arm-right.pushing { transform: rotate(60deg) translateY(-10px); }
+/* BODY */
+.bunny-body {
+  position: relative;
+  width: 54px; height: 52px;
+  background: #e8d5c4;
+  border-radius: 40% 40% 35% 35%;
+  margin-top: -4px;
+  z-index: 2;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
 
-  /* Arms back to side after lean */
-  .girl-arm-left.relaxed  { transform: rotate(20deg); }
-  .girl-arm-right.relaxed { transform: rotate(-20deg); }
+.belly {
+  position: absolute;
+  bottom: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 28px; height: 22px;
+  background: #f5e6d8;
+  border-radius: 50%;
+}
 
-  /* LEGS */
-  .girl-legs {
-    display: flex;
-    gap: 6px;
-    margin-top: 2px;
-  }
+/* ARMS */
+.arm {
+  position: absolute;
+  top: 8px;
+  width: 13px; height: 32px;
+  background: #e8d5c4;
+  border-radius: 6px;
+  transform-origin: top center;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-  .girl-leg {
-    width: 14px; height: 50px;
-    background: #1e1e2a;
-    border-radius: 4px 4px 6px 6px;
-    border: 1px solid #3a3a4a;
-  }
+.arm-left  { left: -11px;  transform: rotate(25deg); }
+.arm-right { right: -11px; transform: rotate(-25deg); }
 
-  /* ── GLOW EFFECT on wrapper when open ── */
-  .shutter-wrapper.glowing {
-    box-shadow: 0 0 50px rgba(16,185,129,0.35), 0 8px 32px rgba(16,185,129,0.15);
-    animation-play-state: running;
-  }
+.arm-left.up  { transform: rotate(-50deg) translateY(-8px); }
+.arm-right.up { transform: rotate(50deg)  translateY(-8px); }
+
+.arm-left.down  { transform: rotate(15deg); }
+.arm-right.down { transform: rotate(-15deg); }
+
+/* FEET */
+.bunny-feet {
+  display: flex;
+  gap: 8px;
+  margin-top: -2px;
+  z-index: 2;
+  position: relative;
+}
+
+.foot {
+  width: 22px; height: 12px;
+  background: #e8d5c4;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* TAIL */
+.tail {
+  position: absolute;
+  right: -8px; bottom: 18px;
+  width: 14px; height: 14px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 1;
+}
+
+/* Wiggle animation */
+@keyframes wiggle {
+  0%,100% { transform: rotate(-5deg); }
+  50%     { transform: rotate(5deg); }
+}
+
+.bunny.wiggling {
+  animation: wiggle 0.3s ease-in-out 3;
+}
+
+/* Bounce animation for ears */
+@keyframes ear-bounce {
+  0%,100% { transform: rotate(-8deg) scaleY(1); }
+  50%     { transform: rotate(-8deg) scaleY(1.1); }
+}
+.ear-left.bounce  { animation: ear-bounce 0.4s ease-in-out 2; }
+.ear-right.bounce {
+  animation: ear-bounce 0.4s ease-in-out 2;
+  animation-direction: alternate;
+}
 </style>
 
 <script>
-  function runAnimation() {
-    const wrapper     = document.getElementById('shutterWrapper');
-    const shutter     = document.querySelector('.shutter-panel');
-    const girlWrapper = document.getElementById('girlWrapper');
-    const armLeft     = document.getElementById('armLeft');
-    const armRight    = document.getElementById('armRight');
-    const pushLabel   = document.getElementById('pushLabel');
+function runBunnyAnimation() {
+  const wrapper     = document.getElementById('shutterWrapper');
+  const shutter     = document.getElementById('shutterPanel');
+  const lock        = document.querySelector('.shutter-lock');
+  const bunnyWrap   = document.getElementById('bunnyWrapper');
+  const bunny       = document.getElementById('bunny');
+  const armLeft     = document.getElementById('armLeft');
+  const armRight    = document.getElementById('armRight');
+  const speechBubble= document.getElementById('speechBubble');
+  const eyeLeft     = document.getElementById('eyeLeft');
+  const eyeRight    = document.getElementById('eyeRight');
+  const earLeft     = document.querySelector('.ear-left');
+  const earRight    = document.querySelector('.ear-right');
 
-    if (!wrapper || !shutter || !girlWrapper) return;
+  if (!wrapper) return;
 
-    // Step 1 — girl slides in from right (0.8s)
-    setTimeout(() => {
-      girlWrapper.classList.add('slide-in');
-      if (pushLabel) pushLabel.classList.add('visible');
-    }, 600);
+  // Step 1 (0.5s) — bunny rises up from bottom
+  setTimeout(() => {
+    if (bunnyWrap) bunnyWrap.classList.add('rise');
+  }, 500);
 
-    // Step 2 — arms go up, shutter starts opening (1.6s)
-    setTimeout(() => {
-      if (armLeft)  armLeft.classList.add('pushing');
-      if (armRight) armRight.classList.add('pushing');
-    }, 1400);
+  // Step 2 (1.2s) — arms go up, lock unlocks
+  setTimeout(() => {
+    if (armLeft)  armLeft.classList.add('up');
+    if (armRight) armRight.classList.add('up');
+    if (lock)     lock.classList.add('unlocked');
+  }, 1200);
 
-    // Step 3 — shutter slides up (1.8s)
-    setTimeout(() => {
-      shutter.classList.add('open');
-    }, 1700);
+  // Step 3 (1.7s) — shutter slides UP
+  setTimeout(() => {
+    if (shutter) shutter.classList.add('open');
+  }, 1700);
 
-    // Step 4 — glow appears (2.5s)
-    setTimeout(() => {
-      wrapper.classList.add('glowing');
-      if (pushLabel) pushLabel.classList.remove('visible');
-    }, 2500);
+  // Step 4 (2.5s) — bunny wiggles happily, eyes squint
+  setTimeout(() => {
+    if (bunny)   bunny.classList.add('wiggling');
+    if (eyeLeft)  eyeLeft.classList.add('happy');
+    if (eyeRight) eyeRight.classList.add('happy');
+    if (earLeft)  earLeft.classList.add('bounce');
+    if (earRight) earRight.classList.add('bounce');
+  }, 2500);
 
-    // Step 5 — girl leans back to the side (2.8s)
-    setTimeout(() => {
-      girlWrapper.classList.add('lean-back');
-      if (armLeft)  { armLeft.classList.remove('pushing');  armLeft.classList.add('relaxed');  }
-      if (armRight) { armRight.classList.remove('pushing'); armRight.classList.add('relaxed'); }
-    }, 2800);
-  }
+  // Step 5 (2.8s) — speech bubble appears
+  setTimeout(() => {
+    if (speechBubble) speechBubble.classList.add('visible');
+  }, 2800);
 
-  // Run on page load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runAnimation);
-  } else {
-    runAnimation();
-  }
+  // Step 6 (3.2s) — arms go down
+  setTimeout(() => {
+    if (armLeft)  { armLeft.classList.remove('up');  armLeft.classList.add('down'); }
+    if (armRight) { armRight.classList.remove('up'); armRight.classList.add('down'); }
+  }, 3200);
+
+  // Step 7 (3.8s) — bunny drops back down, speech bubble hides
+  setTimeout(() => {
+    if (bunnyWrap)    bunnyWrap.classList.add('lean-back');
+    if (speechBubble) speechBubble.classList.remove('visible');
+  }, 3800);
+
+  // Step 8 (4.5s) — wrapper starts floating
+  setTimeout(() => {
+    if (wrapper) wrapper.classList.add('floating');
+  }, 4500);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', runBunnyAnimation);
+} else {
+  runBunnyAnimation();
+}
 </script>
