@@ -17,7 +17,7 @@ const jobs = [
   {
     title: 'Hackathon Participant',
     company: 'CCTRS — Carbon Contribution Tracking & Reward System',
-    date: '2024',
+    date: '2026',
     location: 'Sindh, Pakistan',
     points: [
       'Participated in a hackathon presenting CCTRS, focused on promoting environmentally responsible activities through digital tracking and rewards.',
@@ -48,9 +48,15 @@ const jobs = [
 <div id="experience" class="bg-secondary border-t border-b border-border">
   <section class="max-w-[1200px] mx-auto px-12 py-20">
 
-    <div class="text-xs font-bold tracking-[2px] text-purple uppercase mb-4">EXPERIENCE</div>
-    <h2 class="text-[clamp(36px,4vw,52px)] font-black tracking-[-1.5px] leading-[1.1] mb-3">What I've Done</h2>
-    <p class="text-[#8b90a7] text-[15px] mb-12">My journey through work, hackathons, and academics.</p>
+   <div class="text-xs font-bold tracking-[2px] text-[#10b981] uppercase mb-4">EXPERIENCE</div>
+<div class="title-scan-wrapper mb-3">
+  <h2 class="text-[clamp(36px,4vw,52px)] font-black tracking-[-1.5px] leading-[1.1] text-white relative inline-block">
+    What I've Done
+    <span class="scan-line" id="scanLine"></span>
+  </h2>
+  <span class="magnifier" id="magnifier">🔍</span>
+</div>
+<p class="text-[#8b90a7] text-[15px] mb-12">My journey through work, hackathons, and academics.</p>
 
     <div class="relative flex flex-col gap-8 pl-7">
       <div class="absolute left-[10px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple to-[rgba(124,108,240,0.1)] rounded-full"></div>
@@ -94,7 +100,80 @@ const jobs = [
             </div>
           </div>
         </div>
+        
       ))}
     </div>
   </section>
+  <style>
+.title-scan-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow: visible;
+}
+
+.scan-line {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #10b981, #3b82f6);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(16,185,129,0.6);
+  transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scan-line.scanning {
+  width: 100%;
+}
+
+.magnifier {
+  font-size: 28px;
+  position: absolute;
+  left: -10px;
+  bottom: -2px;
+  opacity: 0;
+  transition: left 1.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+  filter: drop-shadow(0 0 6px rgba(16,185,129,0.5));
+}
+
+.magnifier.scanning {
+  opacity: 1;
+}
+
+.magnifier.done {
+  left: 98%;
+  transition: left 1.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s 1.2s;
+}
+
+.magnifier.hide {
+  opacity: 0;
+}
+</style>
+
+<script>
+function runMagnifier() {
+  const scanLine  = document.getElementById('scanLine');
+  const magnifier = document.getElementById('magnifier');
+  if (!scanLine || !magnifier) return;
+
+  setTimeout(() => {
+    scanLine.classList.add('scanning');
+    magnifier.classList.add('scanning');
+    magnifier.classList.add('done');
+  }, 400);
+
+  setTimeout(() => {
+    magnifier.classList.add('hide');
+  }, 2000);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', runMagnifier);
+} else {
+  runMagnifier();
+}
+</script>
 </div>
