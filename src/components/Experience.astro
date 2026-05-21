@@ -105,51 +105,53 @@ const jobs = [
     </div>
   </section>
   <style>
+<style>
 .title-scan-wrapper {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 8px;
   overflow: visible;
+  margin-bottom: 12px;
 }
 
+/* underline that grows left to right */
 .scan-line {
   position: absolute;
-  bottom: -4px;
+  bottom: -5px;
   left: 0;
   height: 3px;
   width: 0%;
   background: linear-gradient(90deg, #10b981, #3b82f6);
   border-radius: 2px;
-  box-shadow: 0 0 8px rgba(16,185,129,0.6);
-  transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(16,185,129,0.7);
+  transition: width 1.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.scan-line.scanning {
-  width: 100%;
-}
+.scan-line.go { width: 100%; }
 
+/* magnifier travels across the title */
 .magnifier {
-  font-size: 28px;
+  font-size: 30px;
   position: absolute;
-  left: -10px;
-  bottom: -2px;
+  bottom: -8px;
+  left: -30px;
   opacity: 0;
-  transition: left 1.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
-  filter: drop-shadow(0 0 6px rgba(16,185,129,0.5));
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(16,185,129,0.6));
+  transition:
+    left 1.6s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
 }
 
-.magnifier.scanning {
+.magnifier.go {
   opacity: 1;
+  left: 100%;
 }
 
-.magnifier.done {
-  left: 98%;
-  transition: left 1.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s 1.2s;
-}
-
-.magnifier.hide {
+.magnifier.fade {
   opacity: 0;
+  transition: opacity 0.4s ease;
 }
 </style>
 
@@ -159,15 +161,16 @@ function runMagnifier() {
   const magnifier = document.getElementById('magnifier');
   if (!scanLine || !magnifier) return;
 
+  // start after short delay
   setTimeout(() => {
-    scanLine.classList.add('scanning');
-    magnifier.classList.add('scanning');
-    magnifier.classList.add('done');
+    scanLine.classList.add('go');
+    magnifier.classList.add('go');
   }, 400);
 
+  // fade magnifier out after it finishes crossing
   setTimeout(() => {
-    magnifier.classList.add('hide');
-  }, 2000);
+    magnifier.classList.add('fade');
+  }, 2100);
 }
 
 if (document.readyState === 'loading') {
