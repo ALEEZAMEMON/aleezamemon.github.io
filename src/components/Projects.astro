@@ -43,18 +43,24 @@ const steps = [
     </h2>
     <p class="text-[#8b90a7] text-[15px] mb-10">Real projects — from hackathons to personal builds.</p>
 
-    <!-- Process Timeline -->
-    <div class="process-timeline mb-14" id="processTimeline">
-      {steps.map((s, i) => (
-        <div class="process-step" style={`animation-delay: ${i * 0.18}s`}>
-          <div class="process-circle">
-            <span class="process-icon">{s.icon}</span>
-          </div>
-          {i < steps.length - 1 && <div class="process-connector"></div>}
-          <div class="process-label">{s.label}</div>
+   <!-- Process Timeline -->
+<div class="process-timeline" id="processTimeline">
+  {steps.map((s, i) => (
+    <>
+      <div class="process-step" style={`animation-delay:${i * 0.18}s`}>
+        <div class="process-circle">
+          <span class="process-icon">{s.icon}</span>
         </div>
-      ))}
-    </div>
+
+        <div class="process-label">{s.label}</div>
+      </div>
+
+      {i < steps.length - 1 && (
+        <div class="process-connector"></div>
+      )}
+    </>
+  ))}
+</div>
 
     <!-- Project Cards -->
     <div class="flex flex-col gap-8">
@@ -138,23 +144,29 @@ const steps = [
 </div>
 
 <style>
-/* Process Timeline */
+/* Timeline */
 .process-timeline {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 0;
+  padding: 40px 0 20px;
   flex-wrap: nowrap;
-  padding: 20px 0 12px;
 }
 
+/* Each Step */
 .process-step {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   opacity: 0;
-  transform: translateY(24px) scale(0.75);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(24px) scale(0.8);
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+
   flex-shrink: 0;
 }
 
@@ -165,68 +177,98 @@ const steps = [
 
 /* Circle */
 .process-circle {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 95px;
+  height: 95px;
+  border-radius: 999px;
+
   background: linear-gradient(135deg, #0f1a2e, #111f35);
-  border: 2.5px solid #1a3a2a;
+
+  border: 3px solid #1a3a2a;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   position: relative;
   z-index: 2;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  flex-shrink: 0;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .process-step.visible .process-circle {
   border-color: #10b981;
-  box-shadow: 0 0 20px rgba(16,185,129,0.35);
+  box-shadow: 0 0 25px rgba(16,185,129,0.35);
 }
 
+/* Icon */
 .process-icon {
-  font-size: 30px;
+  font-size: 34px;
 }
 
-/* Connector line BETWEEN circles */
+/* Connector BETWEEN circles */
 .process-connector {
-  width: 70px;
+  width: 85px;
   height: 3px;
+
   background: #1a3a2a;
-  flex-shrink: 0;
+
+  margin-top: 46px;
+
   position: relative;
   overflow: hidden;
-  margin-bottom: 30px;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .process-connector.lit {
   background: linear-gradient(90deg, #10b981, #3b82f6);
-  box-shadow: 0 0 8px rgba(16,185,129,0.4);
+  box-shadow: 0 0 10px rgba(16,185,129,0.5);
 }
 
+/* Shine animation */
 .process-connector::after {
   content: '';
+
   position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  top: 0;
+  left: -100%;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+
   animation: connectorShine 2s linear infinite;
 }
 
 @keyframes connectorShine {
-  to { left: 100%; }
+  to {
+    left: 100%;
+  }
 }
 
-/* Label below circle */
+/* Label */
 .process-label {
-  margin-top: 12px;
-  font-size: 12px;
+  margin-top: 18px;
+
+  font-size: 13px;
   font-weight: 700;
+
   color: #4a6070;
-  text-align: center;
-  letter-spacing: 0.5px;
+
+  letter-spacing: 0.4px;
   white-space: nowrap;
-  transition: color 0.3s;
+
+  transition: color 0.3s ease;
 }
 
 .process-step.visible .process-label {
