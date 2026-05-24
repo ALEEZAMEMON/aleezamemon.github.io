@@ -204,22 +204,44 @@ const jobs = [
     }
 
     /* glowing scan effect */
-    .magnifier::after {
-      content: '';
+    /* magnifier scanning over text */
+.magnifier {
+  position: absolute;
+  top: 50%;
+  left: -70px;
 
-      position: absolute;
-      inset: -8px;
+  transform: translateY(-50%);
 
-      border-radius: 50%;
+  /* bigger emoji height */
+  font-size: 70px;
+  line-height: 1;
 
-      background: radial-gradient(
-        circle,
-        rgba(16,185,129,0.2),
-        transparent 72%
-      );
+  opacity: 0;
+  z-index: 5;
 
-      z-index: -1;
-    }
+  pointer-events: none;
+
+  /* dark green color */
+  filter:
+    hue-rotate(85deg)
+    saturate(260%)
+    brightness(0.42)
+    drop-shadow(0 0 8px rgba(16,185,129,0.35));
+
+  transition:
+    left 2s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
+}
+
+.magnifier.go {
+  opacity: 1;
+  left: calc(100% - 10px);
+}
+
+.magnifier.fade {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
   </style>
 
   <script>

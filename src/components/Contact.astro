@@ -171,22 +171,22 @@
 
   <style>
     .contact-emoji {
-      font-size: 46px;
-      display: inline-block;
+  font-size: 46px;
+  display: inline-block;
 
-      /* makes it black-ish */
-      filter:
-        grayscale(1)
-        brightness(0.25);
+  /* dark green color */
+  filter:
+    hue-rotate(85deg)
+    saturate(220%)
+    brightness(0.45);
 
-      transform-origin: top center;
+  transform-origin: top center;
 
-      /* slower animation */
-      animation: phoneRingSlow 1.8s ease-in-out 4;
+  /* slow ringing */
+  animation: phoneRingSlow 1.8s ease-in-out 4;
 
-      /* smooth rendering */
-      will-change: transform;
-    }
+  will-change: transform;
+}
 
     @keyframes phoneRingSlow {
 
