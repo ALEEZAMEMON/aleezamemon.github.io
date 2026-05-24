@@ -52,64 +52,72 @@ const jobs = [
       EXPERIENCE
     </div>
 
+    <!-- Title with magnifier -->
     <div class="title-scan-wrapper">
       <h2 class="experience-title text-[clamp(36px,4vw,52px)] font-black tracking-[-1.5px] leading-[1.1] text-white relative inline-block">
         What I've Done
         <span class="scan-line" id="scanLine"></span>
       </h2>
-
-      <span class="magnifier" id="magnifier">🔍</span>
+      <!-- SVG magnifier matching gradient -->
+      <span class="magnifier" id="magnifier">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#10b981"/>
+              <stop offset="100%" stop-color="#3b82f6"/>
+            </linearGradient>
+          </defs>
+          <circle cx="15" cy="15" r="10" stroke="url(#mgGrad)" stroke-width="3" fill="rgba(16,185,129,0.08)"/>
+          <line x1="23" y1="23" x2="33" y2="33" stroke="url(#mgGrad)" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </span>
     </div>
 
     <p class="text-[#8b90a7] text-[15px] mb-12">
       My journey through work, hackathons, and academics.
     </p>
 
+    <!-- Timeline -->
     <div class="relative flex flex-col gap-8 pl-7">
 
-      <div class="absolute left-[10px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple to-[rgba(124,108,240,0.1)] rounded-full"></div>
+      <div class="absolute left-[10px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#10b981] to-[rgba(16,185,129,0.1)] rounded-full"></div>
 
       {jobs.map(job => (
         <div class="relative flex gap-7 items-start">
 
           <div
-            class="absolute -left-[34px] top-6 w-3.5 h-3.5 rounded-full bg-purple border-[3px] border-secondary z-10"
-            style="box-shadow: 0 0 0 3px rgba(124,108,240,0.3)"
+            class="absolute -left-[34px] top-6 w-3.5 h-3.5 rounded-full bg-[#10b981] border-[3px] border-secondary z-10"
+            style="box-shadow: 0 0 0 3px rgba(16,185,129,0.3)"
           ></div>
 
-          <div class="flex-1 bg-card2 border border-border rounded-2xl p-8 hover:border-[rgba(124,108,240,0.45)] hover:shadow-[0_4px_32px_rgba(124,108,240,0.1)] transition-all duration-300">
+          <div class="flex-1 bg-card2 border border-[#1a3a2a] rounded-2xl p-8
+                      hover:border-[rgba(16,185,129,0.45)]
+                      hover:shadow-[0_4px_32px_rgba(16,185,129,0.1)]
+                      transition-all duration-300">
 
             <div class="flex justify-between items-start gap-4 flex-wrap mb-5">
-
               <div>
                 <div class="text-[18px] font-extrabold text-white tracking-[-0.3px] mb-1">
                   {job.title}
                 </div>
-
-                <div class="text-[14px] font-semibold text-purple-light">
+                <div class="text-[14px] font-semibold text-[#34d399]">
                   {job.company}
                 </div>
               </div>
-
               <div class="text-right">
-                <div class="inline-block bg-[rgba(124,108,240,0.15)] border border-[rgba(124,108,240,0.35)] text-purple-light text-xs font-semibold px-3 py-1 rounded-full mb-1">
+                <div class="inline-block bg-[rgba(16,185,129,0.12)] border border-[rgba(16,185,129,0.35)] text-[#34d399] text-xs font-semibold px-3 py-1 rounded-full mb-1">
                   {job.date}
                 </div>
-
                 <div class="text-xs text-[#5a5f7a] text-right">
                   {job.location}
                 </div>
               </div>
-
             </div>
 
             <ul class="flex flex-col gap-2.5 mb-5">
               {job.points.map(pt => (
                 <li class="relative pl-5 text-[14px] text-[#8b90a7] leading-[1.65]">
-                  <span class="absolute left-0 top-0 text-purple font-bold text-[13px]">
-                    ✓
-                  </span>
-
+                  <span class="absolute left-0 top-0 text-[#10b981] font-bold text-[13px]">✓</span>
                   {pt}
                 </li>
               ))}
@@ -117,7 +125,12 @@ const jobs = [
 
             <div class="flex flex-wrap gap-2">
               {job.tags.map(tag => (
-                <span class="text-xs font-semibold px-3 py-1 rounded-full border border-[rgba(124,108,240,0.4)] text-purple-light hover:bg-[rgba(124,108,240,0.12)] hover:border-purple transition-colors cursor-default">
+                <span class="text-xs font-semibold px-3 py-1 rounded-full
+                             border border-[rgba(16,185,129,0.35)]
+                             text-[#34d399]
+                             hover:bg-[rgba(16,185,129,0.1)]
+                             hover:border-[#10b981]
+                             transition-colors cursor-default">
                   {tag}
                 </span>
               ))}
@@ -128,143 +141,84 @@ const jobs = [
       ))}
     </div>
   </section>
-
-  <style>
-    .title-scan-wrapper {
-      position: relative;
-      display: inline-block;
-      overflow: visible;
-      margin-bottom: 12px;
-    }
-
-    .experience-title {
-      position: relative;
-    }
-
-    /* animated underline */
-    .scan-line {
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0%;
-      height: 3px;
-
-      background: linear-gradient(
-        90deg,
-        #10b981,
-        #3b82f6
-      );
-
-      border-radius: 999px;
-
-      box-shadow:
-        0 0 12px rgba(16,185,129,0.7),
-        0 0 22px rgba(59,130,246,0.35);
-
-      transition:
-        width 1.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .scan-line.go {
-      width: 100%;
-    }
-
-    /* magnifier animation */
-    .magnifier {
-      position: absolute;
-      top: 50%;
-      left: -50px;
-
-      transform: translateY(-50%);
-
-      font-size: 30px;
-
-      opacity: 0;
-      z-index: 5;
-
-      pointer-events: none;
-
-      filter:
-        drop-shadow(0 0 8px rgba(16,185,129,0.8))
-        drop-shadow(0 0 18px rgba(16,185,129,0.45));
-
-      transition:
-        left 1.8s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.3s ease;
-    }
-
-    .magnifier.go {
-      opacity: 1;
-      left: calc(100% - 10px);
-    }
-
-    .magnifier.fade {
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    /* glowing scan effect */
-    /* magnifier scanning over text */
-.magnifier {
-  position: absolute;
-  top: 50%;
-  left: -70px;
-
-  transform: translateY(-50%);
-
-  /* bigger emoji height */
-  font-size: 70px;
-  line-height: 1;
-
-  opacity: 0;
-  z-index: 5;
-
-  pointer-events: none;
-
-  /* dark green color */
-  filter:
-    hue-rotate(85deg)
-    saturate(260%)
-    brightness(0.42)
-    drop-shadow(0 0 8px rgba(16,185,129,0.35));
-
-  transition:
-    left 2s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s ease;
-}
-
-.magnifier.go {
-  opacity: 1;
-  left: calc(100% - 10px);
-}
-
-.magnifier.fade {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-  </style>
-
-  <script>
-    function runMagnifier() {
-      const scanLine = document.getElementById('scanLine');
-      const magnifier = document.getElementById('magnifier');
-
-      if (!scanLine || !magnifier) return;
-
-      setTimeout(() => {
-        scanLine.classList.add('go');
-        magnifier.classList.add('go');
-      }, 400);
-
-      setTimeout(() => {
-        magnifier.classList.add('fade');
-      }, 2300);
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', runMagnifier);
-    } else {
-      runMagnifier();
-    }
-  </script>
 </div>
+
+<style>
+  .title-scan-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    overflow: visible;
+    margin-bottom: 12px;
+  }
+
+  .experience-title {
+    position: relative;
+  }
+
+  /* Underline that grows left to right */
+  .scan-line {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #10b981, #3b82f6);
+    border-radius: 999px;
+    box-shadow: 0 0 12px rgba(16,185,129,0.7), 0 0 22px rgba(59,130,246,0.35);
+    transition: width 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scan-line.go {
+    width: 100%;
+  }
+
+  /* SVG magnifier travels across title */
+  .magnifier {
+    position: absolute;
+    top: 50%;
+    left: -50px;
+    transform: translateY(-55%);
+    opacity: 0;
+    z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(0 0 8px rgba(16,185,129,0.6))
+            drop-shadow(0 0 16px rgba(59,130,246,0.4));
+    transition:
+      left 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s ease;
+  }
+
+  .magnifier.go {
+    opacity: 1;
+    left: calc(100% + 8px);
+  }
+
+  .magnifier.fade {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+</style>
+
+<script>
+  function runMagnifier() {
+    const scanLine  = document.getElementById('scanLine');
+    const magnifier = document.getElementById('magnifier');
+    if (!scanLine || !magnifier) return;
+
+    setTimeout(() => {
+      scanLine.classList.add('go');
+      magnifier.classList.add('go');
+    }, 400);
+
+    setTimeout(() => {
+      magnifier.classList.add('fade');
+    }, 2400);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runMagnifier);
+  } else {
+    runMagnifier();
+  }
+</script>

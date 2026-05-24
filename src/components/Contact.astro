@@ -174,13 +174,15 @@
   font-size: 46px;
   display: inline-block;
 
-  /* dark green color */
-  filter:
-    hue-rotate(85deg)
-    saturate(220%)
-    brightness(0.45);
-
   transform-origin: top center;
+
+  /* same green-blue glow tone */
+  filter:
+    hue-rotate(70deg)
+    saturate(220%)
+    brightness(1.05)
+    drop-shadow(0 0 8px rgba(16,185,129,0.55))
+    drop-shadow(0 0 16px rgba(59,130,246,0.35));
 
   /* slow ringing */
   animation: phoneRingSlow 1.8s ease-in-out 4;
